@@ -189,11 +189,11 @@ class Dimensions(ttk.Frame):
     
     # return number of rows
     def get_rows(self):
-        return self.rows.get()
+        return int(self.rows.get())
     
     # return number of columns
     def get_cols(self):
-        return self.columns.get()
+        return int(self.columns.get())
 
 
 class Grid(ttk.Frame):
@@ -219,25 +219,51 @@ class Grid(ttk.Frame):
         else:
             self.block_size = self.block_size_max_y
 
+        self.canvas_width = self.block_size * int(Dimensions.get_cols(draw_frame))
+        self.canvas_height = self.block_size * int(Dimensions.get_rows(draw_frame))
+
         # create canvas to draw on; sized to ensure square blocks
-        self.grid_canvas = tk.Canvas(self, bg='white', width=self.block_size * int(Dimensions.get_cols(draw_frame)), height=self.block_size * int(Dimensions.get_rows(draw_frame)))
+        self.grid_canvas = tk.Canvas(self, bg='white', width=self.canvas_width, height=self.canvas_height)
         self.grid_canvas.grid(row=0, column=0)
 
         # print(win_size, win_pos, self.x, self.y)
         # print(self.winfo_rootx()-win_pos[0], self.winfo_rooty()-win_pos[1])
 
+        self.grid_canvas.delete('all')
         # create randomized grid
         self.randomize()
+
+        # display color coded grid
+        self.display()
+        self.test()
 
         self.grid(row=1, column=1, rowspan=100, sticky='n')
 
     # randomizer function
     def randomize(self):
         self.items = Settings.get_items(input_items)
-        self.items
+        self.layout = []
+        for i in range(Dimensions.get_rows(draw_frame)):
+            self.layout.append([])
+            for j in range(Dimensions.get_cols(draw_frame)):
+                above = self.layout[i-1][j] if ((i-1) >= 0) else -1
+                #below = self.layout[i+1][j] if ((i+1) < Dimensions.get_rows(draw_frame)) else -1
+                left = self.layout[i][j-1] if ((j-1) >= 0) else -1
+                #right = self.layout[i][j+1] if ((j+1) >= Dimensions.get_cols(draw_frame)) else -1
+                value = -1
+                while value in [above, left, -1]:
+                    check = random.randint(0, len(self.items)-1)
+                    value = check if (self.items[check].get_quantity() > 0) else -1
+                self.layout[i].append(value)
+                self.items[value].use_one()
+    
+    def display(self):
+        for i in range(len(self.layout)):
+            for j in range(len(self.layout[i])):
+                self.grid_canvas.create_rectangle(self.block_size * i, self.block_size * j, self.block_size * (i+1), self.block_size * (j+1), fill=self.items[self.layout[i][j]].get_color())
+        
 
-
-
+ 
 if __name__ == "__main__":
     app = App()
     input_items = Settings(app)
