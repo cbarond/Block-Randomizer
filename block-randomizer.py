@@ -235,7 +235,6 @@ class Grid(ttk.Frame):
 
         # display color coded grid
         self.display()
-        self.test()
 
         self.grid(row=1, column=1, rowspan=100, sticky='n')
 
@@ -256,11 +255,12 @@ class Grid(ttk.Frame):
                     value = check if (self.items[check].get_quantity() > 0) else -1
                 self.layout[i].append(value)
                 self.items[value].use_one()
+
     
     def display(self):
         for i in range(len(self.layout)):
             for j in range(len(self.layout[i])):
-                self.grid_canvas.create_rectangle(self.block_size * i, self.block_size * j, self.block_size * (i+1), self.block_size * (j+1), fill=self.items[self.layout[i][j]].get_color())
+                self.grid_canvas.create_rectangle(self.block_size * j, self.block_size * i, self.block_size * (j+1), self.block_size * (i+1), fill=self.items[self.layout[i][j]].get_color())
         
 
  
