@@ -1,3 +1,4 @@
+from genericpath import exists
 from struct import pack
 import tkinter as tk
 from tkinter import ttk
@@ -33,6 +34,11 @@ class App(tk.Tk):
         x = self.winfo_rootx()
         y = self.winfo_rooty()
         return [x, y]
+
+    # Return grid size
+    def app_grid_size(self):
+        x = self.grid_size()
+        return x
 
 
 class Settings(ttk.Frame):
@@ -88,9 +94,14 @@ class Settings(ttk.Frame):
 
     # reset list of items
     def reset_items(self):
+
+        if len(app.winfo_children()) > 6:
+            app.winfo_children()[-1].destroy()
+
         for i in range(len(self.items)):
             self.items[i].destroy()
         self.items = []
+
 
 
 class Input(ttk.Frame):
@@ -101,6 +112,7 @@ class Input(ttk.Frame):
 
         # set initial quantity
         self.quantity = 0
+        self.total = 0
 
         # entry box for name
         self.name = tk.StringVar()
@@ -133,6 +145,7 @@ class Input(ttk.Frame):
     # save input quantity to class variable
     def set_quantity(self):
         self.quantity = int(self.quantity_in.get())
+        self.total = int(self.quantity_in.get())
 
     # return name of item
     def get_name(self):
@@ -141,6 +154,9 @@ class Input(ttk.Frame):
     # return quantity of item
     def get_quantity(self):
         return self.quantity
+
+    def get_total(self):
+        return self.total
     
     # return color of item
     def get_color(self):
@@ -183,10 +199,15 @@ class Dimensions(ttk.Frame):
     
     # delete previous canvas and redraw
     def draw(self):
+
+        # delete used/remaining list
+        if len(app.winfo_children()) > 6:
+            app.winfo_children()[-1].destroy()
+
         self.canvas.destroy()
         self.canvas = Grid(app)
         App.win_size(app)
-    
+
     # return number of rows
     def get_rows(self):
         return int(self.rows.get())
@@ -236,11 +257,19 @@ class Grid(ttk.Frame):
         # display color coded grid
         self.display()
 
+        # display used items
+        self.used = Quantities(app)
+
         self.grid(row=1, column=1, rowspan=100, sticky='n')
 
     # randomizer function
     def randomize(self):
         self.items = Settings.get_items(input_items)
+
+        # Reset item quantities
+        for i in self.items:
+            i.set_quantity()
+
         self.layout = []
         for i in range(Dimensions.get_rows(draw_frame)):
             self.layout.append([])
@@ -256,11 +285,34 @@ class Grid(ttk.Frame):
                 self.layout[i].append(value)
                 self.items[value].use_one()
 
-    
+    # displays colored grid; iterates through randomized grid
     def display(self):
         for i in range(len(self.layout)):
             for j in range(len(self.layout[i])):
                 self.grid_canvas.create_rectangle(self.block_size * j, self.block_size * i, self.block_size * (j+1), self.block_size * (i+1), fill=self.items[self.layout[i][j]].get_color())
+    
+    
+# displays used and remaining quantities of items
+class Quantities(ttk.Frame):
+    def __init__(self, container):
+        super().__init__(container)
+
+        options = {'padx': 2, 'pady': 2}
+
+        self.rows = App.app_grid_size(app)[1]
+        self.items = Settings.get_items(input_items)
+
+        self.used_label = ttk.Label(self, text="Used").grid(row=0, column=1, **options)
+        self.remaining_label = ttk.Label(self, text="Remaining").grid(row=0, column=2, **options)
+
+        for i, item in enumerate(self.items):
+            self.name = ttk.Label(self, text=item.get_name()).grid(row=i+1, column=0, **options)
+            self.used = ttk.Label(self, text=item.get_total()-item.get_quantity()).grid(row=i+1, column=1, **options)
+            self.remain = ttk.Label(self, text=item.get_quantity()).grid(row=i+1, column=2, **options)
+
+        
+
+        self.grid(row=self.rows+2, column=0, sticky='n', **options)
         
 
  
