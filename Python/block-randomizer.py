@@ -291,7 +291,7 @@ class Grid(ttk.Frame):
             for j in range(len(self.layout[i])):
                 self.grid_canvas.create_rectangle(self.block_size * j, self.block_size * i, self.block_size * (j+1), self.block_size * (i+1), fill=self.items[self.layout[i][j]].get_color())
     
-    
+
 # displays used and remaining quantities of items
 class Quantities(ttk.Frame):
     def __init__(self, container):
