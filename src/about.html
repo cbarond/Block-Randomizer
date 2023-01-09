@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Block Randomizer</title>
+    <link rel="icon" href="/src/images/favicon.ico" />
+    <link rel="stylesheet" href="/src/styles.css" />
+    <script
+      src="https://kit.fontawesome.com/f633155fbd.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="navbar__container">
+        <a href="/" id="navbar__logo">
+          <i class="fas fa-table-cells-large"></i> Block Randomizer
+        </a>
+        <div class="navbar__toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+        <ul class="navbar__menu">
+          <li class="navbar__item">
+            <a href="/" class="navbar__links"> Home </a>
+          </li>
+          <li class="navbar__item">
+            <a href="/src/about.html" class="navbar__links"> About </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- About Section -->
+    <div class="about">
+      <div class="about__container">
+        <div class="about__content">
+          <h2>The Project</h2>
+          <hr class="solid" />
+          <p>
+            This project was created to allow users to create a randomized grid
+            of colors. It allows the user to select the number of options as
+            well as the color and quantity for each option. The tool will then
+            create a grid where no two squares of the same color are touching.
+          </p>
+        </div>
+        <div class="about__content">
+          <h2>History</h2>
+          <hr class="solid" />
+          <p>
+            I originally built this in Python as a tool to help my mother. She
+            was working on a quilt with several different fabric squares, but
+            was having issues creating a nice, random design where no squares of
+            the same type were touching. After I built that, I decided to create
+            a web version so that others could use the same tool. That brings us
+            here!
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer__container">
+      <p>Made by Caelan with ❤</p>
+      <a href="https://github.com/cbarond/Block-Randomizer" target="_blank"
+        >Source Code</a
+      >
+    </div>
+
+    <script src="/src/menu.js"></script>
+  </body>
+</html>

@@ -1,14 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Block Randomizer</title>
-    <link rel="icon" href="/src/images/favicon.ico">
-    <link rel="stylesheet" href="/src/styles.css">
-</head>
-<body>
-    
-</body>
+    <link rel="icon" href="/src/images/favicon.ico" />
+    <link rel="stylesheet" href="/src/styles.css" />
+    <script
+      src="https://kit.fontawesome.com/f633155fbd.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="navbar__container">
+        <a href="/" id="navbar__logo">
+          <i class="fas fa-table-cells-large"></i> Block Randomizer
+        </a>
+        <div class="navbar__toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+        <ul class="navbar__menu">
+          <li class="navbar__item">
+            <a href="/" class="navbar__links"> Home </a>
+          </li>
+          <li class="navbar__item">
+            <a href="src/about.html" class="navbar__links"> About </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main Tool -->
+    <div class="main">
+      <div class="main__container">
+        <div class="main__section">
+          <h2>Inputs</h2>
+
+          <!--TODO Move to JS file: Dynamic List-->
+          <button onclick="addElement();">Add Item</button>
+          <button onclick="removeElement();">Delete Item</button>
+          <br /><br />
+          <ul id="thelist">
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+          </ul>
+
+          <script>
+            var counter = 4
+
+            function addElement() {
+              var completelist = document.getElementById("thelist")
+
+              completelist.innerHTML += "<li>Item " + counter + "</li>"
+              counter++
+            }
+            function removeElement() {
+              var completelist = document.getElementById("thelist")
+
+              completelist.innerHTML = completelist.slice(0, -15)
+              counter--
+            }
+          </script>
+
+        </div>
+        <div class="main__section">
+          <h2>Canvas</h2>
+          <canvas width="450" height="1000"></canvas>
+          <script>
+            let canvas = document.querySelector("canvas")
+            let context = canvas.getContext("2d")
+            context.fillStyle = "red"
+            context.fillRect(0, 10, 450, 900)
+          </script>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer__container">
+      <p>Made by Caelan with ❤</p>
+      <a href="https://github.com/cbarond/Block-Randomizer">Source Code</a>
+    </div>
+
+    <script src="/src/menu.js"></script>
+  </body>
 </html>
