@@ -7,7 +7,11 @@ It supports multiple items and can take the following properties for each:
 - Quantity
 - Color
 
-# Usage
+## Website
+https://cbarond.github.io/Block-Randomizer/
+
+## Python App
+
 1. Enter the number of items you want to use and select "Set"
 2. For each item, enter a name, quantity, and select a color.
 3. Use "Set" in each row to set the quantity for each item.
