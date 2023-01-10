@@ -210,6 +210,16 @@ body {
   flex-direction: column;
 }
 
+.main__inputs--dims {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  grid-template-columns: 75px 20px 75px;
+  padding: 1rem 0;
+  column-gap: 5px;
+  text-align: center;
+}
+
 .main__inputs--titles {
   display: grid;
   justify-content: center;
@@ -234,6 +244,10 @@ body {
 
 .main__inputs .nameInput {
   width: 120px;
+}
+
+#mainCanvas {
+  border-radius: 4px;
 }
 
 /* Home Page Mobile */
