@@ -78,9 +78,13 @@
               <p>Rows</p>
               <p>x</p>
               <p>Columns</p>
-              <input type="text" name="rows" id="rows">
+              <input type="text" name="rows" id="rows" class="dimInput"/>
               <p>x</p>
-              <input type="text" name="columns" id="columns">
+              <input type="text" name="columns" id="columns" class="dimInput"/>
+            </div>
+            <div class="main__inputs--corners">
+              <input type="checkbox" name="corners" id="corners" />
+              <label for="corners">Allow touching corners</label>
             </div>
             <div class="main__inputs--titles">
               <p>Color</p>
@@ -88,61 +92,111 @@
               <p>Name</p>
             </div>
             <div class="main__inputs--boxes">
-              <input type="color" name="Color" id="Color" class="colorSelect" />
-              <input type="text" name="Quantity" id="Quantity" class="quantityInput" />
+              <div class="color-picker-wrapper"><input type="color" name="color" id="color" class="colorSelect" value="#000000"/></div>
+              <input
+                type="text"
+                name="Quantity"
+                id="Quantity"
+                class="quantityInput"
+              />
               <input type="text" name="Name" id="Name" class="nameInput" />
             </div>
             <div class="main__inputs--boxes">
-              <input type="color" name="Color" id="Color" class="colorSelect" />
-              <input type="text" name="Quantity" id="Quantity" class="quantityInput" />
+              <div class="color-picker-wrapper"><input type="color" name="color" id="color" class="colorSelect" value="#000000"/></div>
+              <input
+                type="text"
+                name="Quantity"
+                id="Quantity"
+                class="quantityInput"
+              />
               <input type="text" name="Name" id="Name" class="nameInput" />
             </div>
             <div class="main__inputs--boxes">
-              <input type="color" name="Color" id="Color" class="colorSelect" />
-              <input type="text" name="Quantity" id="Quantity" class="quantityInput" />
+              <div class="color-picker-wrapper"><input type="color" name="color" id="color" class="colorSelect" value="#000000"/></div>
+              <input
+                type="text"
+                name="Quantity"
+                id="Quantity"
+                class="quantityInput"
+              />
               <input type="text" name="Name" id="Name" class="nameInput" />
             </div>
             <div class="main__inputs--boxes">
-              <input type="color" name="Color" id="Color" class="colorSelect" />
-              <input type="text" name="Quantity" id="Quantity" class="quantityInput" />
+              <div class="color-picker-wrapper"><input type="color" name="color" id="color" class="colorSelect" value="#000000"/></div>
+              <input
+                type="text"
+                name="Quantity"
+                id="Quantity"
+                class="quantityInput"
+              />
               <input type="text" name="Name" id="Name" class="nameInput" />
             </div>
             <div class="main__inputs--boxes">
-              <input type="color" name="Color" id="Color" class="colorSelect" />
-              <input type="text" name="Quantity" id="Quantity" class="quantityInput" />
+              <div class="color-picker-wrapper"><input type="color" name="color" id="color" class="colorSelect" value="#000000"/></div>
+              <input
+                type="text"
+                name="Quantity"
+                id="Quantity"
+                class="quantityInput"
+              />
               <input type="text" name="Name" id="Name" class="nameInput" />
             </div>
             <div class="main__inputs--boxes">
-              <input type="color" name="Color" id="Color" class="colorSelect" />
-              <input type="text" name="Quantity" id="Quantity" class="quantityInput" />
+              <div class="color-picker-wrapper"><input type="color" name="color" id="color" class="colorSelect" value="#000000"/></div>
+              <input
+                type="text"
+                name="Quantity"
+                id="Quantity"
+                class="quantityInput"
+              />
               <input type="text" name="Name" id="Name" class="nameInput" />
             </div>
             <div class="main__inputs--boxes">
-              <input type="color" name="Color" id="Color" class="colorSelect" />
-              <input type="text" name="Quantity" id="Quantity" class="quantityInput" />
+              <div class="color-picker-wrapper"><input type="color" name="color" id="color" class="colorSelect" value="#000000"/></div>
+              <input
+                type="text"
+                name="Quantity"
+                id="Quantity"
+                class="quantityInput"
+              />
               <input type="text" name="Name" id="Name" class="nameInput" />
             </div>
             <div class="main__inputs--boxes">
-              <input type="color" name="Color" id="Color" class="colorSelect" />
-              <input type="text" name="Quantity" id="Quantity" class="quantityInput" />
+              <div class="color-picker-wrapper"><input type="color" name="color" id="color" class="colorSelect" value="#000000"/></div>
+              <input
+                type="text"
+                name="Quantity"
+                id="Quantity"
+                class="quantityInput"
+              />
               <input type="text" name="Name" id="Name" class="nameInput" />
             </div>
             <div class="main__inputs--boxes">
-              <input type="color" name="Color" id="Color" class="colorSelect" />
-              <input type="text" name="Quantity" id="Quantity" class="quantityInput" />
+              <div class="color-picker-wrapper"><input type="color" name="color" id="color" class="colorSelect" value="#000000"/></div>
+              <input
+                type="text"
+                name="Quantity"
+                id="Quantity"
+                class="quantityInput"
+              />
               <input type="text" name="Name" id="Name" class="nameInput" />
             </div>
             <div class="main__inputs--boxes">
-              <input type="color" name="Color" id="Color" class="colorSelect" />
-              <input type="text" name="Quantity" id="Quantity" class="quantityInput" />
+              <div class="color-picker-wrapper"><input type="color" name="color" id="color" class="colorSelect" value="#000000"/></div>
+              <input
+                type="text"
+                name="Quantity"
+                id="Quantity"
+                class="quantityInput"
+              />
               <input type="text" name="Name" id="Name" class="nameInput" />
             </div>
           </div>
         </div>
         <div class="main__section">
           <h2>Canvas</h2>
-          <button data-print>Print</button>
-          <canvas width="450" height="1000" id="mainCanvas"></canvas>
+          <button data-generate class="generate_button">Generate</button>
+          <canvas width="450" height="900" id="mainCanvas"></canvas>
           <!-- <script>
             let canvas = document.querySelector("canvas")
             let context = canvas.getContext("2d")
@@ -160,6 +214,7 @@
     </div>
 
     <script src="src/menu.js"></script>
+    <script src="src/input.js"></script>
     <script src="src/draw.js"></script>
   </body>
 </html>
