@@ -315,6 +315,7 @@ body {
   border-radius: 4px;
   background: #ae4aff;
   color: #fff;
+  cursor: pointer;
 }
 
 .print_button:hover {

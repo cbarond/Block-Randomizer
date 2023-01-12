@@ -27,3 +27,5 @@ color_picker.forEach((color, index) => {
     wrapper.style.border = "none"
   })
 })
+
+// TODO Add configurable number of options

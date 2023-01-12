@@ -95,6 +95,7 @@ function checkViability() {
   }
 }
 
+// TODO Check and calculate quantities
 function createGrid() {
   for (i = 0; i < rows.value; i++) {
     grid[i] = new Array(parseFloat(columns.value))
