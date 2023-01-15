@@ -247,7 +247,7 @@ body {
   justify-content: center;
   align-content: center;
   text-align: center;
-  grid-template-columns: 60px 80px 100px;
+  grid-template-columns: 60px 80px 100px 80px;
   padding: 1rem 0;
   column-gap: 20px;
 }
@@ -256,7 +256,7 @@ body {
   display: grid;
   justify-content: center;
   align-content: center;
-  grid-template-columns: 60px 80px 100px;
+  grid-template-columns: 60px 80px 100px 80px;
   padding: 5px 0;
   column-gap: 20px;
 }
@@ -292,6 +292,15 @@ body {
   width: 120px;
   padding: 5px;
   text-align: left;
+  border: 2px solid #ae4aff;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.main__inputs .quantityOutput {
+  width: 70px;
+  padding: 5px;
+  text-align: center;
   border: 2px solid #ae4aff;
   border-radius: 10px;
   width: 100%;

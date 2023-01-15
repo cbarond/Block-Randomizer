@@ -1,6 +1,7 @@
 // Variables
 const colorSelect = document.querySelectorAll(".colorSelect")
 const quantityInput = document.querySelectorAll(".quantityInput")
+const quantityOutput = document.querySelectorAll(".quantityOutput")
 const nameInput = document.querySelectorAll(".nameInput")
 const rows = document.getElementById("rows")
 const columns = document.getElementById("columns")
@@ -29,6 +30,15 @@ function checkForDuplicates(array) {
   return new Set(array).size !== array.length
 }
 
+function updateQuantities() {
+  for (i = 0; i < quantityInput.length; i += 1) {
+    quantityOutput[i].innerHTML = 0
+  }
+  for (i = 0; i < currentQuantity.length; i += 1) {
+    quantityOutput[i].innerHTML = currentQuantity[i]
+  }
+}
+
 function setup() {
   // Reset variables
   colors = []
@@ -54,6 +64,7 @@ function setup() {
       numOfItems += 1
     }
   }
+  updateQuantities()
   console.log(numOfItems, colors, currentQuantity, names) // Console.log
 }
 
@@ -93,9 +104,12 @@ function checkViability() {
     alert("Please reduce the number of rows and/or columns.")
     viable = false
   }
+
+  // Check for enough quantity
+
 }
 
-// TODO Check and calculate quantities
+// TODO Fix freeze when not enough blocks
 function createGrid() {
   for (i = 0; i < rows.value; i++) {
     grid[i] = new Array(parseFloat(columns.value))
@@ -130,10 +144,11 @@ function createGrid() {
         }
         index = getRandomInt(0, numOfItems)
         grid[i][j] = colors[index]
-        while (neighbors.includes(grid[i][j]) == true && viable) {
+        while (neighbors.includes(grid[i][j]) == true && viable || currentQuantity[index] <= 0) {
           index = getRandomInt(0, numOfItems)
           grid[i][j] = colors[index]
         }
+        currentQuantity[index] -= 1
       }
     }
   }
@@ -148,6 +163,7 @@ function drawGrid() {
       context.fillRect(x, y, blockSize, blockSize)
     }
   }
+  updateQuantities()
 }
 
 function getRandomInt(min, max) {
