@@ -105,11 +105,39 @@ function checkViability() {
     viable = false
   }
 
-  // Check for enough quantity
-
+  // Verify quantities
+  threshold = Math.ceil((rows.value * columns.value)/2)
+  //      2 items
+  if (corners.checked && numOfItems == 2) {
+    for (i = 0; i < currentQuantity.length; i += 1) {
+      if (currentQuantity[i] < threshold) {
+        alert(`Please increase the quantity of Row ${i+1}.`)
+        viable = false
+      }
+    }
+  }
+  //      5 items
+  if (corners.checked && numOfItems == 5) { 
+    for (i = 0; i < currentQuantity.length; i += 1) {
+      if (currentQuantity[i] < threshold) {
+        alert(`Please increase the quantity of Row ${i+1}.`)
+        viable = false
+      }
+    }
+  }
+  //      Check each item for enough of others
+  let sum = currentQuantity.reduce((a, b) => a + b, 0)
+  console.log(`Sum: ${sum}`)
+  for (i = 0; i < currentQuantity.length; i += 1) {
+    if (sum - currentQuantity[i] < rows.value * columns.value) {
+      alert("Please increase the quantities.")
+      viable = false
+      break
+    }
+  }  
 }
 
-// TODO Fix freeze when not enough blocks
+// TODO Change to retry until valid grid is found
 function createGrid() {
   for (i = 0; i < rows.value; i++) {
     grid[i] = new Array(parseFloat(columns.value))
@@ -144,14 +172,23 @@ function createGrid() {
         }
         index = getRandomInt(0, numOfItems)
         grid[i][j] = colors[index]
+        let tries = 1 // Track attempts
         while (neighbors.includes(grid[i][j]) == true && viable || currentQuantity[index] <= 0) {
+          console.log(`[${i}][${j}] Tries: ${tries}`)
+          if (tries > numOfItems + 1) { // Exit if out of tries
+            console.log("Exit: Out of tries")
+            generateButton.innerHTML = "Try again"
+            return
+          }
           index = getRandomInt(0, numOfItems)
           grid[i][j] = colors[index]
+          tries += 1
         }
         currentQuantity[index] -= 1
       }
     }
   }
+  generateButton.innerHTML = "Generate"
 }
 
 function drawGrid() {
