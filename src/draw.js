@@ -175,10 +175,10 @@ function createGrid() {
         let tries = 1 // Track attempts
         while (neighbors.includes(grid[i][j]) == true && viable || currentQuantity[index] <= 0) {
           console.log(`[${i}][${j}] Tries: ${tries}`)
-          if (tries > numOfItems + 1) { // Exit if out of tries
+          if (tries > numOfItems + 10) { // Exit if out of tries
             console.log("Exit: Out of tries")
             generateButton.innerHTML = "Try again"
-            return
+            return false
           }
           index = getRandomInt(0, numOfItems)
           grid[i][j] = colors[index]
@@ -189,6 +189,7 @@ function createGrid() {
     }
   }
   generateButton.innerHTML = "Generate"
+  return true
 }
 
 function drawGrid() {
@@ -211,10 +212,17 @@ function getRandomInt(min, max) {
 
 // Event Listeners
 generateButton.addEventListener("click", () => {
-  setup()
-  computeSize()
-  checkViability()
-  createGrid()
+  let success = false
+  let count = 0
+  while (viable && !success && count < 100) {
+    setup()
+    computeSize()
+    checkViability()
+    success = createGrid()
+    count += 1
+    console.log(`Count: ${count}`)
+  }
+  // createGrid()
   context.clearRect(0, 0, canvas.width, canvas.height)
   drawGrid()
 
