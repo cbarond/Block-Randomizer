@@ -214,6 +214,9 @@ function getRandomInt(min, max) {
 generateButton.addEventListener("click", () => {
   let success = false
   let count = 0
+  setup()
+  computeSize()
+  checkViability()
   while (viable && !success && count < 100) {
     setup()
     computeSize()
